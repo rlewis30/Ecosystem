@@ -1,4 +1,5 @@
 This is a terminal that was written for a Data Structures and Algorithms class. It is meant to solve this problem:
+
 Write a Java program to simulate an ecosystem containing two types of creatures,bears and fish. The ecosystem consists of a river, which is 
 modeled as a relatively large array. Each cell of the array should contain an Animal object, which can be a Bear object, a Fish object, or null
 . In each time step, based on a random process, each animal either attempts to move into an adjacent array cell or stay where it is. If two 
