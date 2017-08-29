@@ -5,6 +5,9 @@ public class Driver
     public static void main(String[]args)
     {   
         boolean full=false;
+        boolean nullCount=false;
+        int count=0;
+        int index;
         
         Animal[] river=createRiver();
         System.out.println(river.length);
@@ -14,11 +17,15 @@ public class Driver
         /*
         This is the main loop that causes the activity to happen in the ecosystem
         */
-        for(int i=0;i<11;i++)
+        while(full==false)
         {
+            nullCount=false;
             for(int j=0;j<river.length;j++)
-            {
-                if(river[j]!=null) //finds the animals in the open water
+            {   if(river[j]==null)
+                {
+                    //System.out.println(nullCount);
+                }
+                else//finds the animals in the open water
                 {
                     if(river[j].move()==1) //checks to see if the animal moves to the left
                     {
@@ -29,24 +36,38 @@ public class Driver
                             {
                                 case "die":
                                     river[j]=null;
-                                    //System.out.println("The fish died!");
+                                    System.out.println("The fish died!");
                                     break;
                                 case "eat":
                                     river[j-1]=null;
-                                    //System.out.println("The Bear ate the fish!");
+                                    System.out.println("The Bear ate the fish!");
+                                    break;
+                                case "duplicate":
+                                    if(Animal.checkAnimal(river[j])=="Bear")
+                                    {
+                                        index=Animal.duplicate(river);
+                                        river[index]=new Bear();
+                                        System.out.println("Bear was born!");
+                                    }
+                                    else
+                                    {
+                                        index=Animal.duplicate(river);
+                                        river[index]=new Fish();
+                                        System.out.println("Fish was born!");
+                                    }
                                     break;
                                 default:
                                     if(Animal.checkAnimal(river[j])=="Bear")
                                     {
                                         river[j]=null;
                                         river[j-1]=new Bear();
-                                        //System.out.println("The Bear moves left!");
+                                        System.out.println("The Bear moves left!");
                                     }
                                     else
                                     {
                                         river[j]=null;
                                         river[j-1]=new Fish();
-                                        //System.out.println("The Fish moves left!");
+                                        System.out.println("The Fish moves left!");
                                     }
                                     break;
                             }
@@ -62,40 +83,65 @@ public class Driver
                             {
                                 case "die":
                                     river[j]=null;
-                                    //System.out.println("The fish died!");
+                                    System.out.println("The fish died!");
                                     break;
                                 case "eat":
                                     river[j+1]=null;
-                                    //System.out.println("The Bear ate the fish!");
+                                    System.out.println("The Bear ate the fish!");
                                     break;
+                                case "duplicate":
+                                    if(Animal.checkAnimal(river[j])=="Bear")
+                                    {
+                                        index=Animal.duplicate(river);
+                                        river[index]=new Bear();
+                                    }
+                                    else
+                                    {
+                                        index=Animal.duplicate(river);
+                                        river[index]=new Fish();
+                                        break;
+                                    }
                                 default:
                                     if(Animal.checkAnimal(river[j])=="Bear")
                                     {
                                         river[j]=null;
                                         river[j+1]=new Bear();
-                                        //System.out.println("The Bear moves left!");
+                                        System.out.println("The Bear moves left!");
                                     }
                                     else
                                     {
                                         river[j]=null;
                                         river[j+1]=new Fish();
-                                        //System.out.println("The Fish moves left!");
+                                        System.out.println("The Fish moves left!");
                                     }
                                     break;
                             }
                         }
                     }
                     
-                     else//checks to see if the animal moves to the right
+                    else//checks to see if the animal moves to the right
                     {
-                        //System.out.println(Animal.checkAnimal(river[j])+" stays where it is at");
+                        System.out.println(Animal.checkAnimal(river[j])+" stays where it is at");
                     }
                 }
             }
             
             displayRiver(river);
             System.out.println();
+            if(Animal.checkNull(river)==false)
+            {
+                full=true;
+                System.out.println("I'm triggered!!!!");
+            }
         }
+        
+//        Animal[]test={null,new Fish(),null,null,new Bear()};
+//        //System.out.println(Animal.checkNull(test));
+//        int index;
+//        index=Animal.duplicate(test);
+//        System.out.println(test[index] instanceof Bear);
+//        test[index]=new Bear();
+//        System.out.println(test[index] instanceof Bear);
     }
     
     /*
@@ -105,7 +151,7 @@ public class Driver
     {
 //      Random riverSize = new Random();
 //      Animal[] river=new Animal[riverSize.nextInt((50-4)+4)+4];
-        Animal[] river=new Animal[50];
+        Animal[] river=new Animal[20];
         
         int size=river.length/2;
         for(int i=0;i<size;i++)

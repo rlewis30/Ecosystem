@@ -58,6 +58,10 @@ This method generates and returns a random number that corresponds to the direct
         {
             action="eat";
         }
+        else if(animalType1==1&&animalType2==1||animalType1==2&&animalType2==2)
+        {
+            action="duplicate";
+        }
         else if((animalType1==1&&animalType2==3)||(animalType1==3&&animalType2==1)||(animalType1==2&&animalType2==3)||(animalType1==3&&animalType2==2)) 
         {
             action="moves";
@@ -83,4 +87,44 @@ This method generates and returns a random number that corresponds to the direct
         
         return animalKind;
     }
+    
+    public static int duplicate(Animal[]a)
+    {
+        int index=0;
+        Random rand = new Random();
+        
+        ArrayList<Integer> nullIndex=new ArrayList<>();
+        for(int i=0;i<a.length;i++)
+        {
+            if(a[i]==null)
+            {
+                nullIndex.add(i);
+            }
+        }
+        
+//        System.out.println("The indexes for the nulls are: ");
+        for(int i=0;i<nullIndex.size();i++)
+        {
+            //System.out.println(nullIndex.get(i));
+        }
+        if(nullIndex.isEmpty()==false)
+        {
+            index=nullIndex.get(rand.nextInt(nullIndex.size()));
+//          System.out.println("The index is: "+index);
+        }
+        return index;
+    }
+    
+   public static boolean checkNull(Animal[] b)
+   {
+       boolean isNull=false;
+       for(int i=0;i<b.length;i++)
+       {
+           if(b[i]==null)
+           {
+               isNull=true;
+           }
+       }
+       return isNull;
+   }
 }
