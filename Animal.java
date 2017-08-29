@@ -1,13 +1,14 @@
 import java.util.*;
-
-/*
-This is an abstract class is extended by the Bear and Fish classes
-*/
+/**
+ * This is an abstract class is extended by the Bear and Fish classes
+ * @author Ryan Lewis
+ */
 public abstract class Animal 
-{
-/*
-This method generates and returns a random number that corresponds to the direction that the animal moves    
-*/    
+{    
+    /**
+    * This method generates and returns a random number that corresponds to the direction that the animal moves
+    * @return a random integer between 1-3
+    */    
     public int move()
     {
         Random ran = new Random();
@@ -16,6 +17,12 @@ This method generates and returns a random number that corresponds to the direct
         return direction;
     }
     
+    /**
+     * This method determines the type of the animal as well as the interaction that happens among the animals
+     * @param animal1
+     * @param animal2
+     * @return a string that represents the action the animal takes
+     */
     public String interaction(Animal animal1, Animal animal2)
     {
         String action="";
@@ -69,6 +76,11 @@ This method generates and returns a random number that corresponds to the direct
         return action;
     }
     
+    /**
+     * This method determines what kind of animal the array element is
+     * @param animal
+     * @return String that is the type of animal
+     */
     public static String checkAnimal(Animal animal)
     {
         String animalKind="";
@@ -88,6 +100,12 @@ This method generates and returns a random number that corresponds to the direct
         return animalKind;
     }
     
+    /**
+     * This method returns an index for a random null element in an array which is to be the index where a new animal is 
+     * created.
+     * @param a
+     * @return an integer that is a random index that contains a null value
+     */
     public static int duplicate(Animal[]a)
     {
         int index=0;
@@ -114,7 +132,12 @@ This method generates and returns a random number that corresponds to the direct
         }
         return index;
     }
-    
+   
+   /**
+    * This method returns a boolean in order to see if there are any null places in the array
+    * @param b
+    * @return a boolean which is true if there are nulls in the array or false if there are none
+    */
    public static boolean checkNull(Animal[] b)
    {
        boolean isNull=false;

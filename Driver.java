@@ -1,17 +1,23 @@
 import java.util.*;
-
+/**
+ * This is class contains the main method for the program
+ * @author Ryan Lewis
+ */
 public class Driver
 {
+    /**
+     * This is the main method that runs the program
+     * @param args 
+     */
     public static void main(String[]args)
     {   
-        boolean full=false;
+        boolean full=false; //This variable holds the flag which determines whether or not to end the loop that starts moves that causes activity
         boolean nullCount=false;
         int count=0;
-        int index;
+        int index; 
         
-        Animal[] river=createRiver();
-        System.out.println(river.length);
-        displayRiver(river);
+        Animal[] river=createRiver(); //This creates an Animal array that contains the river and the place animals
+        displayRiver(river); //This displays the river prior to the loop starting
         System.out.println();
         
         /*
@@ -20,21 +26,20 @@ public class Driver
         while(full==false)
         {
             nullCount=false;
-            for(int j=0;j<river.length;j++)
+            for(int j=0;j<river.length;j++) //This loop goes through all the objects in the river array to start their actions
             {   if(river[j]==null)
                 {
-                    //System.out.println(nullCount);
                 }
                 else//finds the animals in the open water
                 {
                     if(river[j].move()==1) //checks to see if the animal moves to the left
                     {
-                        if(j!=0)
+                        if(j!=0) //This makes sure the object in the array is not null
                         {
-                            String interaction=river[j].interaction(river[j], river[j-1]);
-                            switch(interaction)
+                            String interaction=river[j].interaction(river[j], river[j-1]); //This gets the interaction for that animal
+                            switch(interaction) //This launches the code that has that animal do that action
                             {
-                                case "die":
+                                case "die": 
                                     river[j]=null;
                                     System.out.println("The fish died!");
                                     break;
@@ -79,7 +84,7 @@ public class Driver
                         if(j!=river.length-1)
                         {
                             String interaction=river[j].interaction(river[j], river[j+1]);
-                            switch(interaction)
+                            switch(interaction) //This launches the code that has that animal do that action
                             {
                                 case "die":
                                     river[j]=null;
@@ -126,27 +131,19 @@ public class Driver
                 }
             }
             
-            displayRiver(river);
+            displayRiver(river); //This displays the river after every loop
             System.out.println();
-            if(Animal.checkNull(river)==false)
+            if(Animal.checkNull(river)==false) //This determines whether to set the flag which determines if the river is full
             {
                 full=true;
-                System.out.println("I'm triggered!!!!");
             }
         }
-        
-//        Animal[]test={null,new Fish(),null,null,new Bear()};
-//        //System.out.println(Animal.checkNull(test));
-//        int index;
-//        index=Animal.duplicate(test);
-//        System.out.println(test[index] instanceof Bear);
-//        test[index]=new Bear();
-//        System.out.println(test[index] instanceof Bear);
     }
     
-    /*
-    *This method creates the river and places the Bears and the Fishes
-    */
+    /**
+     * This method creates the array which represents the river, places the animals in the river, and ranomizes that array
+     * @return an array that represnts the river and the animals in the river
+     */
     public static Animal[] createRiver()
     {
 //      Random riverSize = new Random();
@@ -173,9 +170,10 @@ public class Driver
     }
     
     
-    /*
-    *This method takes in an array and displays the river and the animals in the river
-    */
+    /**
+     * This method displays the river graphically
+     * @param river 
+     */
     public static void displayRiver(Animal[]river)
     {
         for(int i=0;i<river.length;i++)

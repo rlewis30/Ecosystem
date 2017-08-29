@@ -1,6 +1,7 @@
-/*
-This class represents bears in the ecosystem program. It extends the Animal class
-*/
+/**
+ * This class represents Bears in the ecosystem program. It extends the Animal class
+ * @author Ryan Lewis
+ */
 public class Bear extends Animal 
 {
     
